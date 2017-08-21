@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="./app.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <!-- application root -->
+  <div id="app">
+    <form v-on:submit="createTodo">
+      <h3>Add todo</h3>
+      <label>title</label>
+      <input name="title">
+      <button type="submit">create todo</button>
+    </form>
+    <ul>
+      <todo-item v-for="item in todos" :key="item.text" v-bind:todo="item" v-on:toggle="toggleTodo" v-on:remove="removeTodo">
+      </todo-item>
+    </ul>
+  </div>
+
+  <!-- todo template -->
+  <script type="text/x-template" id='todo-item'>
+    <li>
+      <span>test: {{ todo.text }}</span>
+      <input type="checkbox" v-bind:value="todo.completed" v-on:click="clickItem">
+      <button v-on:click="remove">remove</button>
+    </li>
+  </script>
+</body>
+
+</html>
